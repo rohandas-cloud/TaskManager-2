@@ -1,0 +1,56 @@
+[versions]
+agp = "9.2.0"
+kotlin = "1.9.0"
+kapt = "1.9.0"
+googleServices = "4.4.4"
+firebaseCrashlytics = "3.0.7"
+firebaseAuth = "23.2.1"
+firebaseFirestore = "25.1.4"
+firebaseMessaging = "24.1.2"
+firebaseAnalytics = "22.5.0"
+lifecycle = "2.10.0"
+room = "2.8.4"
+work = "2.11.2"
+coreKtx = "1.12.0"
+appcompat = "1.7.1"
+material = "1.9.0"
+constraintlayout = "2.2.1"
+junit = "4.13.2"
+androidxJunit = "1.1.5"
+espressoCore = "3.5.1"
+
+[libraries]
+# Core AndroidX libraries
+androidx.core.ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx.appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+# Firebase libraries
+firebase.auth.ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuth" }
+firebase.firestore.ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestore" }
+firebase.crashlytics.ktx = { group = "com.google.firebase", name = "firebase-crashlytics-ktx", version.ref = "firebaseCrashlytics" }
+firebase.messaging.ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessaging" }
+firebase.analytics.ktx = { group = "com.google.firebase", name = "firebase-analytics-ktx", version.ref = "firebaseAnalytics" }
+
+# MVVM libraries
+androidx.lifecycle.viewmodel.ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx.lifecycle.livedata.ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycle" }
+
+# Room libraries
+androidx.room.ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx.room.compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+# WorkManager libraries
+androidx.work.runtime.ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
+
+# Testing libraries
+junit4 = { group = "junit", name = "junit", version.ref = "junit" }
+androidx.test.junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
+androidx.test.espresso.core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kapt" }
+google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+google-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }

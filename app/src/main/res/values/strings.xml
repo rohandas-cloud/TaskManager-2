@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TaskManager Pro</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="sign_in_subtitle">Sign in to continue your journey</string>
+    <string name="get_started">Get Started</string>
+    <string name="dashboard_greeting">Good Morning,</string>
+    <string name="today_tasks">Today’s Tasks</string>
+    <string name="new_project">New Project</string>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Existing colors -->
+    <color name="tp_background">#F5F7FA</color>
+    <color name="tp_primary_blue">#4A90E2</color>
+    <color name="tp_text_primary">#1A1A1A</color>
+    <color name="tp_text_secondary">#666666</color>
+    <color name="tp_text_tertiary">#999999</color>
+    <color name="tp_surface">#FFFFFF</color>
+    <color name="tp_white">#FFFFFF</color>
+    <color name="tp_dark_active">#357ABD</color>
+    <color name="tp_done_bg">#E8F5E9</color>
+    <color name="tp_done_text">#2E7D32</color>
+    <color name="tp_ongoing_bg">#FFF3E0</color>
+    <color name="tp_ongoing_text">#EF6C00</color>
+    <color name="tp_canceled_text">#D32F2F</color>
+    <color name="nav_bar_background">#FFFFFF</color>
+
+    <!-- MISSING COLORS ADDED HERE -->
+    <color name="primary_purple">#6200EE</color>
+    <color name="surface_variant">#E0E0E0</color>
+    <color name="primary_dark">#3700B3</color>
+    <color name="premium_violet">#9C27B0</color>
+    <color name="accent_pink">#FF4081</color>
+    <color name="primary">#4A90E2</color>
+    <color name="premium_indigo">#357ABD</color>
+</resources>

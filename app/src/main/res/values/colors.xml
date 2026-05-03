@@ -16,12 +16,18 @@
     <color name="tp_canceled_text">#D32F2F</color>
     <color name="nav_bar_background">#FFFFFF</color>
 
-    <!-- MISSING COLORS ADDED HERE -->
-    <color name="primary_purple">#6200EE</color>
-    <color name="surface_variant">#E0E0E0</color>
-    <color name="primary_dark">#3700B3</color>
-    <color name="premium_violet">#9C27B0</color>
-    <color name="accent_pink">#FF4081</color>
-    <color name="primary">#4A90E2</color>
-    <color name="premium_indigo">#357ABD</color>
+    <!-- Premium & Modern Design Colors (Standardized with tp_ prefix) -->
+    <color name="tp_primary_purple">#6200EE</color>
+    <color name="tp_surface_variant">#E0E0E0</color>
+    <color name="tp_primary_dark">#3700B3</color>
+    <color name="tp_premium_violet">#9C27B0</color>
+    <color name="tp_accent_pink">#FF4081</color>
+    <color name="tp_accent_blue">#4A90E2</color>
+    <color name="tp_primary">#4A90E2</color>
+    <color name="tp_premium_indigo">#357ABD</color>
+    <color name="tp_fab_glow">#404A90E2</color>
+    <color name="tp_bg_gradient_start">#F1F5F9</color>
+    <color name="tp_bg_gradient_end">#F8FAFC</color>
+    <color name="tp_my_light_primary">#4A90E2</color>
+    <color name="tp_my_dark_primary">#1A1A1A</color>
 </resources>

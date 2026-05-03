@@ -1,26 +1,30 @@
 plugins {
     alias(libs.plugins.android.application)
-
- // Ensure this matches the plugin ID in settings.gradle
     alias(libs.plugins.google.services)
     alias(libs.plugins.google.firebase.crashlytics)
 }
 
 android {
-    namespace = "com.example.taskmanagerpro"
-    compileSdk = 35
+    namespace = "com.rohandas.taskmanagerpro"
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.example.taskmanagerpro"
+        applicationId = "com.rohandas.taskmanagerpro"
         minSdk = 31
-        targetSdk = 35
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -29,43 +33,42 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 
-
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 kotlin {
-    compilerOptions {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
-    }
+    jvmToolchain(11)
 }
 
 dependencies {
     // Core
-    implementation(libs.androidx.core.ktx) // Note: Use dot notation if libs is a TomlAccessors object
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material.material)
+    implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    // Firebase libraries (using version catalog)
-    implementation(libs.firebase.auth.ktx)
-    implementation(libs.firebase.firestore.ktx)
-    implementation(libs.firebase.crashlytics.ktx)
-    implementation(libs.firebase.messaging.ktx)
-    implementation(libs.firebase.analytics.ktx)
+    // Firebase libraries
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.messaging)
+    implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-analytics")
 
-    // MVVM
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-
-    // Room
-    implementation(libs.androidx.room.ktx)
-    kapt(libs.androidx.room.compiler) // KAPT usage
+    // Lifecycle (MVVM)
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
 
     // WorkManager
-    implementation(libs.androidx.work.runtime.ktx)
+    implementation("androidx.work:work-runtime-ktx:2.9.0")
 
     // Testing
-    testImplementation(libs.junit.junit)
+    testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
 }

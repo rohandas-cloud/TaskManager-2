@@ -5,8 +5,8 @@
         <shape android:shape="rectangle">
             <gradient
                 android:angle="0"
-                android:endColor="@color/primary_dark"
-                android:startColor="@color/primary"
+                android:endColor="@color/tp_primary_dark"
+                android:startColor="@color/tp_primary"
                 android:type="linear" />
             <corners android:radius="24dp" />
         </shape>

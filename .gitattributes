@@ -1,0 +1,26 @@
+# Platform-independent line ending configuration
+# Ensure gradlew always uses LF (Linux/macOS need this)
+gradlew text eol=lf
+*.sh text eol=lf
+
+# Windows batch files use CRLF
+gradlew.bat text eol=crlf
+*.bat text eol=crlf
+
+# Gradle files - auto-detect
+*.gradle text=auto
+*.gradle.kts text=auto
+*.properties text=auto
+*.toml text=auto
+
+# Java/Kotlin source files
+*.java text=auto
+*.kt text=auto
+*.kts text=auto
+*.xml text=auto
+
+# Binary files - never transform
+*.jar binary
+*.png binary
+*.jpg binary
+*.webp binary

@@ -87,6 +87,14 @@
                         android:textColor="@color/tp_text_primary"
                         android:textSize="28sp"
                         android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvTaskCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 Tasks today"
+                        android:textColor="@color/tp_text_secondary"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
             </RelativeLayout>
@@ -129,10 +137,11 @@
                         app:tint="@color/tp_white" />
 
                     <TextView
+                        android:id="@+id/tvTodoCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:text="12 Project"
+                        android:text="0 Project"
                         android:textColor="@color/tp_white"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -164,10 +173,11 @@
                         app:tint="@color/tp_text_primary" />
 
                     <TextView
+                        android:id="@+id/tvCompletedCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:text="3 Project"
+                        android:text="0 Project"
                         android:textColor="@color/tp_text_primary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -198,10 +208,11 @@
                         app:tint="@color/tp_text_primary" />
 
                     <TextView
+                        android:id="@+id/tvOngoingCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:text="7 Project"
+                        android:text="0 Project"
                         android:textColor="@color/tp_text_primary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -232,10 +243,11 @@
                         app:tint="@color/tp_text_primary" />
 
                     <TextView
+                        android:id="@+id/tvCanceledCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:text="2 Project"
+                        android:text="0 Project"
                         android:textColor="@color/tp_text_primary"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -337,123 +349,13 @@
             </HorizontalScrollView>
 
             <!-- Task List -->
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDashboardTasks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:orientation="vertical">
-
-                <!-- Task Item 1 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    app:cardBackgroundColor="@color/tp_surface"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="0dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
-
-                        <CheckBox
-                            android:id="@+id/cb1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:buttonTint="@color/tp_text_tertiary" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@id/cb1"
-                            android:layout_marginStart="8dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Meeting With Client"
-                                android:textColor="@color/tp_text_primary"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="8 May 2023"
-                                android:textColor="@color/tp_text_secondary"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:src="@android:drawable/ic_menu_more"
-                            app:tint="@color/tp_text_tertiary" />
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Task Item 2 -->
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    app:cardBackgroundColor="@color/tp_surface"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="0dp">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp">
-
-                        <CheckBox
-                            android:id="@+id/cb2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:buttonTint="@color/tp_text_tertiary" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_toEndOf="@id/cb2"
-                            android:layout_marginStart="8dp"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Research"
-                                android:textColor="@color/tp_text_primary"
-                                android:textSize="15sp"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="8 May 2023"
-                                android:textColor="@color/tp_text_secondary"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:src="@android:drawable/ic_menu_more"
-                            app:tint="@color/tp_text_tertiary" />
-                    </RelativeLayout>
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_task" />
 
         </LinearLayout>
     </ScrollView>

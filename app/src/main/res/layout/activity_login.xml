@@ -146,6 +146,7 @@
                     android:textColor="@color/tp_text_secondary" />
 
                 <TextView
+                    android:id="@+id/tvSignUp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Create Account"

@@ -17,7 +17,7 @@
                 android:shape="ring"
                 android:thickness="4dp"
                 android:useLevel="true">
-                <solid android:color="@color/accent_pink" />
+                <solid android:color="@color/tp_accent_pink" />
             </shape>
         </rotate>
     </item>

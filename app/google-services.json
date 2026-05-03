@@ -8,28 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:445600585099:android:924a1b36ff307a1c3d0b8e",
+        "mobilesdk_app_id": "1:445600585099:android:31109206023cc6bf3d0b8e",
         "android_client_info": {
-          "package_name": "com.example.protaskmanager"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAb-3GTZHaVg4lgJTeVQPwWOp1J8GJS0w0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:445600585099:android:4e95dbf03216b8f33d0b8e",
-        "android_client_info": {
-          "package_name": "com.example.taskmanagerpro"
+          "package_name": "com.rohandas.taskmanagerpro"
         }
       },
       "oauth_client": [],

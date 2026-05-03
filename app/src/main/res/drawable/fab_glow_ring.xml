@@ -4,5 +4,5 @@
     <solid android:color="#00000000" />
     <stroke
         android:width="6dp"
-        android:color="#3D7B5EE8" />  <!-- semi-transparent purple (@color/fab_glow with alpha) -->
+        android:color="#3D7B5EE8" />  <!-- semi-transparent purple (@color/tp_fab_glow with alpha) -->
 </shape>

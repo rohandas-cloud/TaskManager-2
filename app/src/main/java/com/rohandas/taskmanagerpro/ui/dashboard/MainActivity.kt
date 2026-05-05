@@ -90,6 +90,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, TodayTasksActivity::class.java))
         }
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.refresh()
+        }
+
         binding.profileSection.setOnClickListener {
             startActivity(Intent(this, ProfileActivity::class.java))
         }
@@ -106,11 +110,17 @@ class MainActivity : AppCompatActivity() {
                 viewModel.updateTask(updatedTask)
             },
             onDelete = { task ->
+                com.google.android.material.snackbar.Snackbar.make(binding.root, "Delete requested for: ${task.title}", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show()
                 androidx.appcompat.app.AlertDialog.Builder(this)
                     .setTitle("Delete Task")
                     .setMessage("Are you sure you want to delete '${task.title}'?")
                     .setPositiveButton("Delete") { _, _ ->
-                        viewModel.deleteTask(task.id)
+                        if (task.id.isEmpty()) {
+                            com.google.android.material.snackbar.Snackbar.make(binding.root, "Error: Task ID is missing", com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show()
+                        } else {
+                            viewModel.deleteTask(task.id)
+                            com.google.android.material.snackbar.Snackbar.make(binding.root, "Task delete requested", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show()
+                        }
                     }
                     .setNegativeButton("Cancel", null)
                     .show()
@@ -125,20 +135,46 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.tasks.collect { tasks ->
-                    binding.tvTaskCount.text = "${tasks.size} Total Entries"
+                    binding.tvTaskCount.text = "${tasks.size} Tasks today"
                     
-                    val todoCount = tasks.count { it.status == "Ongoing" }
+                    val ongoingCount = tasks.count { it.status == "Ongoing" }
                     val completedCount = tasks.count { it.status == "Done" }
                     val canceledCount = tasks.count { it.status == "Canceled" }
                     
                     TransitionManager.beginDelayedTransition(binding.root as ViewGroup)
 
-                    binding.tvTodoCount.text = "$todoCount Tasks"
+                    // Todo and Ongoing are often used interchangeably in this UI, 
+                    // but we'll map them clearly now.
+                    binding.tvTodoCount.text = "$ongoingCount Tasks"
                     binding.tvCompletedCount.text = "$completedCount Tasks"
-                    binding.tvOngoingCount.text = "$todoCount Tasks" 
+                    binding.tvOngoingCount.text = "$ongoingCount Tasks" 
                     binding.tvCanceledCount.text = "$canceledCount Tasks"
                     
-                    taskAdapter.updateData(tasks.take(5))
+                    taskAdapter.updateData(tasks)
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isRefreshing.collect { isRefreshing ->
+                    binding.swipeRefreshLayout.isRefreshing = isRefreshing
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.operationStatus.collect { result ->
+                    result?.let {
+                        if (it.isSuccess) {
+                            com.google.android.material.snackbar.Snackbar.make(binding.root, "Operation Successful", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show()
+                        } else {
+                            val error = it.exceptionOrNull()?.message ?: "Unknown error"
+                            com.google.android.material.snackbar.Snackbar.make(binding.root, "Error: $error", com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show()
+                        }
+                        viewModel.resetOperationStatus()
+                    }
                 }
             }
         }

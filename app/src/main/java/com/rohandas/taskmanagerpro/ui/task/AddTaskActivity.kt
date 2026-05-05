@@ -35,6 +35,7 @@ class AddTaskActivity : AppCompatActivity() {
         viewModel.resetOperationStatus()
         setupPickers()
         setupClickListeners()
+        updatePriority(selectedPriority)
         observeViewModel()
     }
 

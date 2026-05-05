@@ -10,7 +10,7 @@ data class User(
 )
 
 data class Task(
-    val id: String = "",
+    var id: String = "",
     val title: String = "",
     val description: String = "",
     val date: String = "",
@@ -24,7 +24,7 @@ data class Task(
 )
 
 data class Project(
-    val id: String = "",
+    var id: String = "",
     val name: String = "",
     val description: String = "",
     val color: String = "#4A90E2",

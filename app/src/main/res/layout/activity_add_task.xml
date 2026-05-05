@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="24dp"
-        android:paddingTop="16dp"
+        android:paddingTop="40dp"
         android:paddingBottom="24dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -208,6 +208,7 @@
                     android:layout_marginEnd="4dp"
                     android:background="@drawable/bg_card_gray"
                     android:text="Low"
+                    android:textColor="@color/tp_text_primary"
                     android:textAllCaps="false" />
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -229,6 +230,7 @@
                     android:layout_marginStart="4dp"
                     android:background="@drawable/bg_card_gray"
                     android:text="High"
+                    android:textColor="@color/tp_text_primary"
                     android:textAllCaps="false" />
             </LinearLayout>
 

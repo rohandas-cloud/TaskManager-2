@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class TaskViewModel(application: Application) : AndroidViewModel(application) {
-    private val repository = TaskRepository()
+    private val repository = TaskRepository.getInstance()
 
     private val _tasks = MutableStateFlow<List<Task>>(emptyList())
     val tasks: StateFlow<List<Task>> = _tasks
@@ -25,6 +25,9 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _operationStatus = MutableStateFlow<Result<Unit>?>(null)
     val operationStatus: StateFlow<Result<Unit>?> = _operationStatus
+
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing: StateFlow<Boolean> = _isRefreshing
 
     init {
         loadData()
@@ -56,6 +59,16 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun refresh() {
+        viewModelScope.launch {
+            _isRefreshing.value = true
+            repository.refresh()
+            // Give it a moment to sync and then stop the animation
+            kotlinx.coroutines.delay(1000)
+            _isRefreshing.value = false
+        }
+    }
+
     fun resetOperationStatus() {
         _operationStatus.value = null
     }
@@ -77,8 +90,11 @@ class TaskViewModel(application: Application) : AndroidViewModel(application) {
 
     fun deleteTask(taskId: String) {
         viewModelScope.launch {
-            repository.deleteTask(taskId)
-            TaskScheduler.cancelTask(getApplication(), taskId)
+            val result = repository.deleteTask(taskId)
+            if (result.isSuccess) {
+                TaskScheduler.cancelTask(getApplication(), taskId)
+            }
+            _operationStatus.value = result
         }
     }
 

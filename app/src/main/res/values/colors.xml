@@ -30,4 +30,11 @@
     <color name="tp_bg_gradient_end">#F8FAFC</color>
     <color name="tp_my_light_primary">#4A90E2</color>
     <color name="tp_my_dark_primary">#1A1A1A</color>
+    <!-- Compatibility Aliases -->
+    <color name="primary_purple">@color/tp_primary_purple</color>
+    <color name="surface_variant">@color/tp_surface_variant</color>
+    <color name="primary_dark">@color/tp_primary_dark</color>
+    <color name="premium_violet">@color/tp_premium_violet</color>
+    <color name="accent_pink">@color/tp_accent_pink</color>
+    <color name="surface">@color/tp_surface</color>
 </resources>

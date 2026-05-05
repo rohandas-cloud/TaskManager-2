@@ -24,6 +24,7 @@ class TaskAdapter(
         val tvCategory: TextView = view.findViewById(R.id.tvTaskCategory)
         val cbStatus: CheckBox = view.findViewById(R.id.cbTaskStatus)
         val ivExpand: ImageView = view.findViewById(R.id.ivExpandTask)
+        val ivDelete: ImageView = view.findViewById(R.id.ivDeleteTask)
         val tvDescription: TextView = view.findViewById(R.id.tvTaskDescription)
     }
 
@@ -71,6 +72,10 @@ class TaskAdapter(
             notifyItemChanged(position)
         }
 
+        holder.ivDelete.setOnClickListener {
+            onDelete?.invoke(task)
+        }
+
         holder.itemView.setOnLongClickListener {
             onDelete?.invoke(task)
             true
@@ -80,7 +85,8 @@ class TaskAdapter(
     override fun getItemCount() = tasks.size
 
     fun updateData(newTasks: List<Task>) {
-        tasks = newTasks
+        android.util.Log.d("TaskAdapter", "Updating data with ${newTasks.size} tasks")
+        tasks = ArrayList(newTasks) // Create a fresh copy to ensure Diff/Equality checks pass
         notifyDataSetChanged()
     }
 }

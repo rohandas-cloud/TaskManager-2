@@ -48,12 +48,17 @@ class TodayTasksActivity : AppCompatActivity() {
     }
 
     private fun showDeleteConfirmation(task: Task) {
+        com.google.android.material.snackbar.Snackbar.make(binding.root, "Delete requested for: ${task.title}", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show()
         androidx.appcompat.app.AlertDialog.Builder(this)
             .setTitle("Delete Task")
             .setMessage("Are you sure you want to delete '${task.title}'?")
             .setPositiveButton("Delete") { _, _ ->
-                viewModel.deleteTask(task.id)
-                Toast.makeText(this, "Task deleted", Toast.LENGTH_SHORT).show()
+                if (task.id.isEmpty()) {
+                    com.google.android.material.snackbar.Snackbar.make(binding.root, "Error: Task ID is missing", com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show()
+                } else {
+                    viewModel.deleteTask(task.id)
+                    com.google.android.material.snackbar.Snackbar.make(binding.root, "Task delete requested", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show()
+                }
             }
             .setNegativeButton("Cancel", null)
             .show()
@@ -66,6 +71,10 @@ class TodayTasksActivity : AppCompatActivity() {
             NavigationHelper.showAddOptions(this)
         }
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.refresh()
+        }
+
         NavigationHelper.setupBottomMenu(this)
     }
 
@@ -75,6 +84,30 @@ class TodayTasksActivity : AppCompatActivity() {
                 viewModel.tasks.collect { tasks ->
                     FirebaseCrashlytics.getInstance().log("Observed ${tasks.size} tasks in TodayTasksActivity")
                     adapter.updateData(tasks)
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.isRefreshing.collect { isRefreshing ->
+                    binding.swipeRefreshLayout.isRefreshing = isRefreshing
+                }
+            }
+        }
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.operationStatus.collect { result ->
+                    result?.let {
+                        if (it.isSuccess) {
+                            com.google.android.material.snackbar.Snackbar.make(binding.root, "Operation Successful", com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show()
+                        } else {
+                            val error = it.exceptionOrNull()?.message ?: "Unknown error"
+                            com.google.android.material.snackbar.Snackbar.make(binding.root, "Error: $error", com.google.android.material.snackbar.Snackbar.LENGTH_LONG).show()
+                        }
+                        viewModel.resetOperationStatus()
+                    }
                 }
             }
         }
